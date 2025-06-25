@@ -4,6 +4,8 @@
 
  Zmiany są **natychmiastowe** i widoczne dla wszystkich graczy na serwerze.
 
+ WYMAGANY ox-lib - https://github.com/overextended/ox_lib
+
 ---
 
 ##  Funkcje
@@ -12,8 +14,7 @@
 -  Globalny efekt — zmiany wpływają na wszystkich graczy (serwer-client sync)
 -  Możliwość przełączania niezależnie NPC i ruchu
 -  Powiadomienia na czacie w stylu `vclear` (`SYSTEM: NPC WYŁĄCZENI`)
--  Kompatybilny z `ox_lib` i QBCore/Qbox/vanilla
-
+  
 ---
 
 ##  Instalacja
