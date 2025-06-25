@@ -23,7 +23,7 @@
 3. W `server.cfg` dodaj:
    ```
    ensure ox_lib
-   ensure npcswitcher
+   ensure un_npcswitcher
    ```
 
 4. Upewnij się, że w pliku `fxmanifest.lua` znajduje się linia:
