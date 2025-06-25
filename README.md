@@ -33,7 +33,7 @@
 
 ---
 
-## 🕹 Użycie
+##  Użycie
 
 W grze wpisz:
 
