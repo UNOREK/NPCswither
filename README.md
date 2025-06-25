@@ -37,8 +37,8 @@ W grze wpisz:
 ```
 
 Otworzy się panel z opcjami:
--  NPC: WŁĄCZENI / WYŁĄCZENI
--  Ruch uliczny: WŁĄCZONY / WYŁĄCZONY
+-  NPC: WŁĄCZ / WYŁĄCZ
+-  Ruch uliczny: WŁĄCZ / WYŁĄCZ
 
 Zmiany zastosują się do całego świata gry — także u innych graczy.
 
