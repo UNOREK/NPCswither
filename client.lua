@@ -3,42 +3,50 @@ local currentState = {
     traffic = true
 }
 
-RegisterCommand('npcmenu', function()
+function openNpcMenu()
     lib.registerContext({
         id = 'npctoggle_menu',
-        title = 'Sterowanie światem AI',
+        title = 'Sterowanie NPC',
         options = {
             {
-                title = currentState.peds and '🚶‍♂️ NPC: WŁĄCZENI' or '🚫 NPC: WYŁĄCZENI',
+                title = 'Piesi: ' .. (currentState.peds and '🟢 Włączone' or '🔴 Wyłączone'),
                 icon = 'users',
                 onSelect = function()
                     TriggerServerEvent('npctoggle:updateWorldState', 'peds', not currentState.peds)
+                    Wait(100)
+                    openNpcMenu()
                 end
             },
             {
-                title = currentState.traffic and '🚗 Ruch uliczny: WŁĄCZONY' or '🚫 Ruch uliczny: WYŁĄCZONY',
+                title = 'Ruch uliczny: ' .. (currentState.traffic and '🟢 Włączony' or '🔴 Wyłączony'),
                 icon = 'car',
                 onSelect = function()
                     TriggerServerEvent('npctoggle:updateWorldState', 'traffic', not currentState.traffic)
+                    Wait(100)
+                    openNpcMenu()
                 end
             },
             {
-                title = '❌ Zamknij menu',
+                title = 'Zamknij panel',
+                icon = 'xmark',
                 event = 'lib:closeContext'
             }
         }
     })
 
     lib.showContext('npctoggle_menu')
+end
+
+RegisterCommand('npcmenu', function()
+    openNpcMenu()
 end)
 
 RegisterNetEvent('npctoggle:applyState', function(state)
     currentState = state or currentState
 
-    -- Powiadomienia na czacie
     TriggerEvent("chat:addMessage", {
         color = {255, 0, 0},
-        args = {"SYSTEM", "Stan NPC: " .. (currentState.peds and "WŁĄCZENI" or "WYŁĄCZENI")}
+        args = {"SYSTEM", "Stan pieszych: " .. (currentState.peds and "WŁĄCZENI" or "WYŁĄCZENI")}
     })
 
     TriggerEvent("chat:addMessage", {
@@ -51,7 +59,6 @@ CreateThread(function()
     while true do
         Wait(0)
 
-        -- NPC
         if not currentState.peds then
             SetPedDensityMultiplierThisFrame(0.0)
             SetScenarioPedDensityMultiplierThisFrame(0.0, 0.0)
@@ -60,7 +67,6 @@ CreateThread(function()
             SetCreateRandomCopsOnScenarios(false)
         end
 
-        -- Ruch uliczny
         if not currentState.traffic then
             SetVehicleDensityMultiplierThisFrame(0.0)
             SetRandomVehicleDensityMultiplierThisFrame(0.0)
@@ -69,5 +75,4 @@ CreateThread(function()
     end
 end)
 
--- Pobiera aktualny stan po dołączeniu gracza
 TriggerServerEvent('npctoggle:syncRequest')
