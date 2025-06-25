@@ -4,7 +4,7 @@
 
  Zmiany są **natychmiastowe** i widoczne dla wszystkich graczy na serwerze.
 
- WYMAGANY ox-lib - https://github.com/overextended/ox_lib
+ WYMAGANY! ox-lib - https://github.com/overextended/ox_lib
 
 ---
 
